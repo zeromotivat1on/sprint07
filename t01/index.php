@@ -8,17 +8,36 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+    
+        .hidden {
+
+            display: none;
+
+        }
+
+        .display {
+
+            display: flex;
+
+        }
+    
+    </style>
+    
 </head>
 
 <body>
 
     <h1>Session for new</h1>
 
-    <form action="index.php" method="post" style="border: 1px solid black; padding: 40px 20px 30px;">
+    <form action="index.php" method="post" style="border: 1px solid black; padding: 40px 20px 30px;"
+        <?php if(isset($_POST['send_button'])) {echo ' hidden';} else {echo ' display';} ?> >
 
         <div style="border: 1px solid black; padding: 20px 10px;">
 
@@ -69,74 +88,71 @@
 
     </form><br>
 
-    <div style="position: absolute; width: calc(100% + 10px); left: -10px; border: 2px solid black"></div><br>
+    <form action="index.php" methon="post"
+        <?php if(!isset($_POST['send_button'])) {echo ' hidden';} else {echo ' display';} ?> >
 
-    <div action="index.php" style="padding: 10px 10px 10px 40px; border: 1px solid black; margin-bottom: 20px;">
+        <div style="padding-left: 40px;">
 
-        <?php
+            <?php
 
-            echo "Your info"."<br><br>";
+                if(isset($_POST['send_button'])) {
 
-            if(isset($_POST['send_button'])) {
-
-                send_button();
-                
-            }
-
-            function send_button() {
-
-                $arr = [
-                    "name" => $_POST["name"] ? $_POST["name"] : "does not have",
-                    "alias" => $_POST["alias"] ? $_POST["alias"] : "does not have",
-                    "age" => $_POST["age"] ? $_POST["age"] : "does not have",
-                    "description" => $_POST["description"] ? $_POST["description"] : "does not have",
-                    "strength" => $_POST["strength"] ? "has" : "does not have",
-                    "speed" => $_POST["speed"] ? "has" : "does not have",
-                    "intelligence" => $_POST["intelligence"] ? "has" : "does not have",
-                    "teleportation" => $_POST["teleportation"] ? "has" : "does not have",
-                    "immortal" => $_POST["immortal"] ? "has" : "does not have",
-                    "another" => $_POST["another"] ? "another" : "does not have",
-                    "level" => $_POST["control_lvl"] ? ($_POST["control_lvl"] / 10) : "does not have",
-                    "publicity" => $_POST["publicity"] ? $_POST["publicity"] : "does not have",
-                ];
-
-                $_SESSION["form_data"] = $arr;
-                
-                if($_SESSION["form_data"] && !empty($_SESSION['counter'])) {
+                    send_button();
                     
-                    foreach($_SESSION["form_data"] as $key => $value) {
+                }
 
-                        echo $key.": ".$value."<br>";
+                function send_button() {
+
+                    $arr = [
+                        "name" => $_POST["name"] ? $_POST["name"] : "does not have",
+                        "alias" => $_POST["alias"] ? $_POST["alias"] : "does not have",
+                        "age" => $_POST["age"] ? $_POST["age"] : "does not have",
+                        "description" => $_POST["description"] ? $_POST["description"] : "does not have",
+                        "strength" => $_POST["strength"] ? "has" : "does not have",
+                        "speed" => $_POST["speed"] ? "has" : "does not have",
+                        "intelligence" => $_POST["intelligence"] ? "has" : "does not have",
+                        "teleportation" => $_POST["teleportation"] ? "has" : "does not have",
+                        "immortal" => $_POST["immortal"] ? "has" : "does not have",
+                        "another" => $_POST["another"] ? "another" : "does not have",
+                        "level" => $_POST["control_lvl"] ? ($_POST["control_lvl"] / 10) : "does not have",
+                        "publicity" => $_POST["publicity"] ? $_POST["publicity"] : "does not have",
+                    ];
+
+                    $_SESSION["form_data"] = $arr;
+                    
+                    if($_SESSION["form_data"]) {
+                        
+                        foreach($_SESSION["form_data"] as $key => $value) {
+
+                            echo $key.": ".$value."<br>";
+
+                        }
 
                     }
 
                 }
 
-            }
+                if(isset($_POST['forget_button'])) {
 
-        ?>
+                    forget_button();
+                    
+                }
 
-    </div>
+                function forget_button() {
 
-    <form action="index.php" methon="post" style="padding: 20px; border: 1px solid black;">
+                    session_destroy();
 
-    <input name="forget_button" type="submit" value="FORGET">
+                }
 
-        <?php
+            ?>
 
-            if(isset($_POST['forget_button'])) {
+        </div>
 
-                forget_button();
-                
-            }
+        <div style="border: 1px solid black; padding: 20px; margin-top: 20px;">
 
-            function forget_button() {
+            <input name="forget_button" type="submit" value="FORGET">
 
-                $_SESSION["form_data"] = "";
-                
-            }
-
-        ?>
+        </div>
 
     </form>
 
