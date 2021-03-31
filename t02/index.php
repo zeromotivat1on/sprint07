@@ -80,7 +80,7 @@
     <form action="index.php" method="post" <?php if(!isset($_SESSION['hashed_password'])) {echo ' hidden';} else {echo ' display';} ?> >
 
         <span>Password saved at session</span><br>
-        <span>Hash is <span><?php echo $_SESSION['hashed_password'] ?></span></span><br>
+        <span>Hash is&nbsp;<span><?php echo $_SESSION['hashed_password'] ?></span></span><br>
         <span>Try to guess</span><input name="check_password" placeholder="Password to session"><input name="check_button" type="submit" value="Check password"><br>
 
         <input name="clear_button" type="submit" value="Clear">
@@ -88,7 +88,6 @@
     </form>
 
     <?php
-   
 
         if(isset($_POST['save_button']) && isset($_POST['password']) && isset($_POST['salt'])) {
 
