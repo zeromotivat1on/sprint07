@@ -88,7 +88,7 @@
 
     </form><br>
 
-    <form action="index.php" methon="post"
+    <form action="index.php" method="post"
         <?php if(!isset($_POST['send_button'])) {echo ' hidden';} else {echo ' display';} ?> >
 
         <div style="padding-left: 40px;">
