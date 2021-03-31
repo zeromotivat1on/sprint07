@@ -2,7 +2,7 @@
     
     session_start();
 
-    if (empty($_SESSION['counter']) || $_SESSION['counter'] >= 7 || !$_COOKIE['refreshCount']) {
+    if (empty($_SESSION['counter']) || !$_COOKIE['refreshCount']) {
 
 	    $_SESSION['counter'] = 1;
         setcookie("refreshCount", $_SESSION['counter'], time() + 60);
