@@ -47,14 +47,10 @@
 
         $avengerQuote2 = new AvengerQuote(1488, "flhhbgkvbn", "SOS", [ "photo.jpg" ]);
         $avengerQuote2->addComment("...");
-        
-        $avengerQuote4 = new AvengerQuote(333, "dyadya", "pamagite", [ "123", "help me" ]);
-        $avengerQuote4->addComment("rofl");
-
+    
         $listAvengerQuote = new ListAvengerQuotes();
         $listAvengerQuote->addAvengerQuote($avengerQuote1);
         $listAvengerQuote->addAvengerQuote($avengerQuote2);
-        $listAvengerQuote->addAvengerQuote($avengerQuote4);
         $listAvengerQuote->toXML("file.xml");
 
         echo '<div class="main"><div class="inner">To XML<pre><br>';
